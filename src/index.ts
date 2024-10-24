@@ -7,7 +7,7 @@ import { PumpFunSDK } from 'pumpdotfun-sdk'
 import OpenAI from 'openai'
 
 const { RPC, DEPLOYER_KEYPAIR, OPEN_AI_KEY } = process.env
-const BUY_AMOUNT = 1
+const BUY_AMOUNT = 3
 const GITHUB_URL = 'https://github.com/pump-deployer/ai-pump-deployer';
 
 const openai = new OpenAI({
@@ -114,23 +114,23 @@ const main = async () => {
     const mint = pumpKeypairGen()
     console.log(`Token mint: ${mint.publicKey}`)
 
-    // console.log('Deploying token...')
-    // const createResults = await sdk.createAndBuy(
-    //     wallet,
-    //     mint,
-    //     tokenMetadata,
-    //     BigInt(BUY_AMOUNT * LAMPORTS_PER_SOL),
-    //     BigInt(100),
-    //     {
-    //         unitLimit: 250000,
-    //         unitPrice: 1000000,
-    //     }
-    // )
+    console.log('Deploying token...')
+    const createResults = await sdk.createAndBuy(
+        wallet,
+        mint,
+        tokenMetadata,
+        BigInt(BUY_AMOUNT * LAMPORTS_PER_SOL),
+        BigInt(100),
+        {
+            unitLimit: 250000,
+            unitPrice: 1000000,
+        }
+    )
 
-    // if (createResults.success) {
-    //     console.log('Finished')
-    //     console.log(`https://pump.fun/${mint.publicKey.toBase58()}`)
-    // }
+    if (createResults.success) {
+        console.log('Finished')
+        console.log(`https://pump.fun/${mint.publicKey.toBase58()}`)
+    }
 }
 
 main()
