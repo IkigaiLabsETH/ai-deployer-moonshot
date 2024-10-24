@@ -23,7 +23,7 @@ const pumpKeypairGen = () => {
         count += 1
 
         if (count % 200000 === 0) {
-            console.log(Iteration count: ${count});
+            console.log(`Iteration count: ${count}`);
         }
     }
 
