@@ -1,0 +1,37 @@
+name: Deployer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Specify your Node.js version
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install
+
+      # Run your script
+      - name: Run Deployer script
+        run: npx tsx src/index.ts
+        env:
+          RPC: ${{ secrets.RPC }}
+          DEPLOYER_KEYPAIR: ${{ secrets.DEPLOYER_KEYPAIR }}
+          OPEN_AI_KEY: ${{ secrets.OPEN_AI_KEY }}
