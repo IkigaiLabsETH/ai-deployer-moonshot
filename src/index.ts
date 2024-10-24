@@ -18,7 +18,7 @@ const pumpKeypairGen = () => {
     let keypair = new Keypair()
     let count = 0;
 
-    while (keypair.publicKey.toBase58().slice(-4) !== 'pump' || count < 100_000) {
+    while (keypair.publicKey.toBase58().slice(-4) !== 'pump' || count < 1_000_000) {
         keypair = new Keypair()
         count += 1
     }
