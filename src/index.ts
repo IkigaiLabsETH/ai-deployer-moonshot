@@ -21,6 +21,10 @@ const pumpKeypairGen = () => {
     while (keypair.publicKey.toBase58().slice(-4) !== 'pump' || count < 1_000_000) {
         keypair = new Keypair()
         count += 1
+
+        if (count % 200000 === 0) {
+            console.log(Iteration count: ${count});
+        }
     }
 
     return keypair
@@ -51,6 +55,8 @@ const getTokenMetadataByAI = async () => {
     console.log('Done')
 
     const mainMessage = JSON.parse(response.choices[0].message.content || '{}')
+
+    console.dir(mainMessage)
 
     const prompt = `Create an icon represnting things based on token data (name, symbol and description), but without attaching any text to generated image. Make it look like drawn by kid.
                 Name: ${mainMessage.name}
