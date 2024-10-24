@@ -121,22 +121,23 @@ const main = async () => {
     console.log(`Token mint: ${mint.publicKey}`)
 
     console.log('Deploying token...')
-    const createResults = await sdk.createAndBuy(
-        wallet,
-        mint,
-        tokenMetadata,
-        BigInt(BUY_AMOUNT * LAMPORTS_PER_SOL),
-        BigInt(100),
-        {
-            unitLimit: 250000,
-            unitPrice: 1000000,
-        }
-    )
+    console.log('Deploy OFF. This has been done to illustrate how the script works without the need of launching a new token."')
+    //const createResults = await sdk.createAndBuy(
+    //    wallet,
+    //    mint,
+    //    tokenMetadata,
+    //    BigInt(BUY_AMOUNT * LAMPORTS_PER_SOL),
+    //    BigInt(100),
+    //    {
+    //        unitLimit: 250000,
+    //        unitPrice: 1000000,
+    //    }
+    //)
 
-    if (createResults.success) {
-        console.log('Finished')
-        console.log(`https://pump.fun/${mint.publicKey.toBase58()}`)
-    }
+    //if (createResults.success) {
+    //    console.log('Finished')
+    //    console.log(`https://pump.fun/${mint.publicKey.toBase58()}`)
+    //}
 }
 
 main()
